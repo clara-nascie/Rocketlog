@@ -25,6 +25,7 @@ services:
       - PORT=3333
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/rocketlog?schema=public
 
 volumes:
   pgdata:
