@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "@/utils/AppError";
+import { ZodError } from "zod";
 
 
 export function errorHandling(
@@ -17,7 +18,15 @@ export function errorHandling(
        })
    }
 
-   //Caso o erro não seja uma instância de AppError, vou retornar um erro genérico
+   //Caso o erro seja uma instância de ZodError, vou retornar um erro genérico
+   if (error instanceof ZodError) {
+       return response.status(400).json({
+           message: "Dados inválidos",
+           issues: error.format(),
+       })
+   }
+
+   //Caso o erro não seja uma instância de AppError nem do ZodError, vou retornar um erro genérico
    return response.status(500).json({
        message: error.message,
    })
