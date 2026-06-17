@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -7,4 +5,74 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+//enum para definir o papel do usuário
+enum UserRole {
+  customer
+  seller
+  admin
+}
+
+enum DeliveryStatus {
+  processing
+  shiped
+  delivered 
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+
+  role      UserRole @default(customer)
+
+//diz que esse model Delivery está relacionado a esse model User
+//[] significa que é um para muitos - ou seja, um usuário pode ter muitas entregas
+  deliveries Delivery[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  //atribui uma nova data automaticamente quando o campo for atualizado
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+//diz para o prisma que esse model corresponde a uma tabela chamada users
+//@@ para dizser que é um atributo em bloco - deve ser aplicado a toda tabela
+//@@map define um nome para tabela no banco de dados
+  @@map("users")
+}
+
+model Delivery {
+  id String @id @default(uuid())
+  userId String @map("user_id")
+  description String
+
+//Essa linha está definindo um relacionamento (ou Chave Estrangeira/Foreign Key) 
+//entre o modelo Delivery (encomenda) e o modelo User (usuário).
+  user User @relation(fields: [userId], references: [id])
+
+  status DeliveryStatus @default(processing)
+
+//Diz que esse model DeliveryLog está relacionado a esse model Delivery
+  logs DeliveryLog[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+
+  @@map("deliveries")
+}
+
+model DeliveryLog {
+  id String @id @default(uuid())
+  description String
+  deliveryId String @map("delivery_id")
+
+//Diz que esse model DeliveryLog está relacionado a esse model Delivery
+  delivery Delivery @relation(fields: [deliveryId], references: [id])
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  @@map("delivery_logs")
 }
