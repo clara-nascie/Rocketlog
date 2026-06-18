@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+//arquivo de conxeão do banco de dados com o prisma 
+import { PrismaClient } from "../generated/prisma";
 
 
 export const prisma = new PrismaClient({
