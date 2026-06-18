@@ -28,15 +28,16 @@ class SessionsController {
     if (!passwordMatch) {
       throw new AppError("Usuário ou senha inválidos!", 401);
     }
-    const {secret, expiresIn} = authConfig.jwt;
+    const { secret, expiresIn } = authConfig.jwt;
 
-    const token = sign({role: user.role ?? "customer"}, secret, {
+    const token = sign({ role: user.role ?? "customer" }, secret, {
       subject: user.id,
-      expiresIn
-    })
+      expiresIn,
+    });
 
     const { password: _, ...userWithoutPassword } = user;
-    return response.json({ message: "Login efetuado com sucesso", user: userWithoutPassword });
+   
+    return response.json({ token });
   }
 }
 
