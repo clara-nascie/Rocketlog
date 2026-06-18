@@ -36,6 +36,18 @@ Este documento descreve detalhadamente o conjunto de tecnologias, bibliotecas e 
 
 ---
 
+## 🔐 Autenticação & Segurança
+
+### [bcrypt](https://www.npmjs.com/package/bcrypt) (v5.1.1)
+- **Descrição**: Biblioteca para hashing seguro de senhas usando a função hash Blowfish.
+- **Função**: Criptografa as senhas dos usuários antes de gravá-las no banco de dados (`hash()`) e compara a senha em texto plano informada no login com a criptografada armazenada (`compare()`).
+
+### [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) (v9.0.2)
+- **Descrição**: Implementação de JSON Web Tokens (JWT) para autenticação e troca segura de informações.
+- **Função**: Gera tokens de acesso assinados digitalmente (`sign()`) no momento do login e decodifica/valida os tokens nas rotas protegidas (`verify()`).
+
+---
+
 ## 🛡️ Validação & Tratamento de Erros
 
 ### [Zod](https://zod.dev/) (v3.23.8)
@@ -63,4 +75,4 @@ Este documento descreve detalhadamente o conjunto de tecnologias, bibliotecas e 
 - **`tsx`** (v4.16.2): Executor super rápido que transpila TypeScript para JavaScript sob demanda usando esbuild, com suporte nativo ao modo de watch (`tsx watch`) para hot-reload.
 - **`ts-node`** (v10.9.2): Executor TypeScript para Node.js tradicional.
 - **`tsc-alias`** (v1.8.17): Resolve caminhos mapeados por alias (ex: `@/*` definido no `tsconfig.json`) durante o processo de compilação da aplicação para produção.
-- **`@types/express`** & **`@types/node`**: Fornecem as definições de tipos para que o TypeScript reconheça os pacotes do Express e do Node.js.
+- **`@types/express`**, **`@types/node`**, **`@types/bcrypt`** & **`@types/jsonwebtoken`**: Fornecem as definições de tipos para que o TypeScript reconheça os pacotes do Express, do Node.js, do bcrypt e do jsonwebtoken.

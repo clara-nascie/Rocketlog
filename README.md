@@ -178,3 +178,5 @@ Para aprofundar seu conhecimento na arquitetura e nas rotas da aplicação, cons
 
 - [**Página Inicial da Documentação**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/README.md)
 - [**Lista de Ferramentas & Stack**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/stack.md)
+- [**Autenticação & Autorização (RBAC)**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/auth.md)
+- [**Guia de Rotas & Endpoints**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/routes.md)

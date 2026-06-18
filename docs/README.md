@@ -1,6 +1,6 @@
 # 🚀 Rocketlog - Documentação do Projeto
 
-Bem-vindo à documentação oficial do **Rocketlog**! Este espaço foi criado para centralizar todas as informações técnicas, decisões de arquitetura, guias de execução e detalhes sobre o fluxo de desenvolvimento do projeto.
+Bem-vindo à documentação oficial do **Rocketlog**! Este espaço centraliza todas as informações técnicas, decisões de arquitetura, guias de execução e detalhes sobre o fluxo de desenvolvimento do projeto.
 
 ---
 
@@ -15,11 +15,11 @@ O **Rocketlog** é uma API robusta de encomendas e logística desenvolvida para 
 Navegue pelas seções da documentação utilizando os links abaixo:
 
 1. [**🛠️ Stack Tecnológica**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/stack.md)
-   - Visão detalhada de todas as linguagens, frameworks, banco de dados, ORM e ferramentas de desenvolvimento utilizadas no projeto.
-2. *[Próximos Documentos]*
-   - **Banco de Dados & Modelagem**: Detalhes sobre as entidades (`User`, `Delivery`, `DeliveryLog`) e seus relacionamentos. *(Em desenvolvimento)*
-   - **Guia de Rotas & Endpoints**: Documentação das rotas disponíveis e formato de requisições/respostas. *(Em desenvolvimento)*
-   - **Fluxo de Desenvolvimento & Docker**: Como rodar o projeto localmente com Docker, scripts npm e migrações. *(Em desenvolvimento)*
+   - Visão detalhada de todas as linguagens, frameworks, banco de dados, ORM, bibliotecas de autenticação e ferramentas de desenvolvimento.
+2. [**🔐 Autenticação & Autorização (RBAC)**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/auth.md)
+   - Como funciona o fluxo de segurança do projeto, geração de tokens JWT, middlewares de validação e restrições baseadas em papéis (`seller`, `admin`, `customer`).
+3. [**🛣️ Guia de Rotas & Endpoints**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/routes.md)
+   - Lista detalhada de todos os endpoints expostos pela API, contendo exemplos de requisição e resposta.
 
 ---
 
