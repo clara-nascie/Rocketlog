@@ -15,6 +15,7 @@ describe("UsersController", () => {
     }
   });
 
+  //criação de usuário com sucesso e cadastro no banco de dados
   it("should create a new user successfully", async () => {
     const response = await request(app).post("/users").send({
       name: "Test User",
@@ -29,6 +30,7 @@ describe("UsersController", () => {
     expect(response.body.name).toBe("Test User");
   });
 
+  //validação de email/usuário repetido
   it('should throw an error if the user already exists', async () => {
      const response = await request(app).post("/users").send({
       name: "Duplicate User",
@@ -38,5 +40,17 @@ describe("UsersController", () => {
 
     expect(response.status).toBe(400)
     expect(response.body.message).toBe("User already exists")
+  })
+
+//validação de email
+  it("should throw an error if email is invalid", async () => {
+    const response = await request(app).post("/users").send({
+      name: "Test User",
+      email: "invalid-email",
+      password: "password123",
+    });
+
+    expect(response.status).toBe(400)
+    expect(response.body.message).toBe("Dados inválidos")
   })
 });
