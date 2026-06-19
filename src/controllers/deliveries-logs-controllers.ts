@@ -51,10 +51,29 @@ class DeliveriesLogsController {
       where: {
         id: delivery_id,
       },
+      //os logs que eu quero que apareçam 
+      include: {
+        logs: {
+          //quais campos do log eu quero que apareça
+          select: {
+            id: true,
+            description: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        
+      },
     });
 
-    if (request.user?.role === "customer" && request.user.id !== delivery?.userId) {
-      throw new AppError("Você não tem permissão para visualizar esta entrega", 401);
+    if (
+      request.user?.role === "customer" &&
+      request.user.id !== delivery?.userId
+    ) {
+      throw new AppError(
+        "Você não tem permissão para visualizar esta entrega",
+        401,
+      );
     }
 
     return response.json(delivery);
