@@ -23,6 +23,12 @@ class DeliveriesLogsController {
       throw new AppError("Entrega não encontrada", 404);
     }
 
+    if (delivery.status === "delivered") {
+      throw new AppError(
+        "Não é possível criar um novo log para entregas finalizadas",
+        400,
+      );
+    }
     if (delivery.status === "processing") {
       throw new AppError(
         "É necessário modificar o status para 'shipped' antes de criar um novo log",
