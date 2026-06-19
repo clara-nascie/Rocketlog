@@ -23,11 +23,6 @@ const config: Config = {
 
   moduleNameMapper: {
     "@/(.*)$": "<rootDir>/src/$1"
-  },
-
-  // Habilita o polling para detectar alterações de arquivos no Docker/Windows
-  watchOptions: {
-    poll: 1000
   }
 
  
