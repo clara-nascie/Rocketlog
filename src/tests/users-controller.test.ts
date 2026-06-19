@@ -28,4 +28,15 @@ describe("UsersController", () => {
     expect(response.body).toHaveProperty("id");
     expect(response.body.name).toBe("Test User");
   });
+
+  it('should throw an error if the user already exists', async () => {
+     const response = await request(app).post("/users").send({
+      name: "Duplicate User",
+      email: "testuser@example.com",
+      password: "password",
+    });
+
+    expect(response.status).toBe(400)
+    expect(response.body.message).toBe("User already exists")
+  })
 });
