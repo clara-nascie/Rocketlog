@@ -76,3 +76,5 @@ Este documento descreve detalhadamente o conjunto de tecnologias, bibliotecas e 
 - **`ts-node`** (v10.9.2): Executor TypeScript para Node.js tradicional.
 - **`tsc-alias`** (v1.8.17): Resolve caminhos mapeados por alias (ex: `@/*` definido no `tsconfig.json`) durante o processo de compilação da aplicação para produção.
 - **`@types/express`**, **`@types/node`**, **`@types/bcrypt`** & **`@types/jsonwebtoken`**: Fornecem as definições de tipos para que o TypeScript reconheça os pacotes do Express, do Node.js, do bcrypt e do jsonwebtoken.
+- **`jest`** (v29.7.0) & **`ts-jest`** (v29.2.5) & **`@types/jest`** (v29.5.13): Framework de testes unitários e de integração configurado para rodar testes automatizados TypeScript de forma rápida.
+- **`supertest`** (v7.0.0) & **`@types/supertest`** (v6.0.2): Biblioteca para testar os endpoints da API HTTP de forma programática.
