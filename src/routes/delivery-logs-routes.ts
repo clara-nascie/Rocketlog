@@ -13,4 +13,10 @@ deliveriesLogsRoutes.post("/",
     verifyUserAuthorization(["seller"]),
     deliveriesLogsController.create)
 
+//rota para buscar logs
+deliveriesLogsRoutes.get("/:delivery_id/show",
+    ensureAuthenticated,
+    verifyUserAuthorization(["seller", "customer"]),
+    deliveriesLogsController.show)
+
 export { deliveriesLogsRoutes };
