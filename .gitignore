@@ -3,4 +3,6 @@ node_modules
 /src/generated/prisma
 AGENTS.md
 passo-a-passo.html
+coverage
+
 

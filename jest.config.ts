@@ -23,7 +23,14 @@ const config: Config = {
 
   moduleNameMapper: {
     "@/(.*)$": "<rootDir>/src/$1"
-  }
+  },
+
+  collectCoverageFrom: [
+    "<rootDir>/src/**/*.ts",
+    "!<rootDir>/src/generated/**",
+    "!<rootDir>/src/@types/**",
+    "!<rootDir>/src/**/*.test.ts"
+  ]
 
  
 };

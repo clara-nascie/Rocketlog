@@ -6,6 +6,7 @@
 [![Prisma ORM](https://img.shields.io/badge/Prisma-5.19-indigo?style=flat&logo=prisma)](https://www.prisma.io/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?style=flat&logo=postgresql)](https://www.postgresql.org/)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-cyan?style=flat&logo=docker)](https://www.docker.com/)
+[![Coverage](https://img.shields.io/badge/Coverage-63%25-yellow?style=flat&logo=jest)](https://jestjs.io/)
 
 O **Rocketlog** é uma API de gerenciamento e rastreio de encomendas desenvolvida em **Node.js** com **TypeScript**, utilizando o framework **Express** e o ORM **Prisma** integrado ao banco de dados **PostgreSQL**.
 
