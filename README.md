@@ -35,10 +35,10 @@ A aplicação foi estruturada visando a escalabilidade, robustez operacional e t
 - **Gestão de Usuários com Níveis de Acesso (RBAC):**
   - **Customer (Cliente):** Destinatário final das encomendas.
   - **Seller (Vendedor):** Responsável por registrar e gerenciar as encomendas destinadas aos clientes.
-  - **Admin (Administrador):** Controle total de usuários e encomendas no sistema.
+  - **Admin (Administrador):** papel previsto no enum `UserRole`, porém **ainda não implementado** — nenhuma rota o utiliza no estado atual do projeto.
 - **Controle de Encomendas (Deliveries):**
   - Criação de entregas associadas a clientes específicos.
-  - Atualização dinâmica de estados da entrega (`processing` ➡️ `shipped` ➡️ `delivered`).
+  - Atualização dinâmica de estados da entrega (`processing` ➡️ `shiped` ➡️ `delivered`).
 - **Histórico de Logs (Delivery Logs):**
   - Registro cronológico de movimentação e status das encomendas, permitindo auditoria detalhada de cada etapa do envio.
 - **Tratamento Global de Erros:** Captura automática de falhas de validação, erros de lógica do app (`AppError`) e exceções inesperadas.
