@@ -14,8 +14,68 @@ A aplicação foi estruturada visando a escalabilidade, robustez operacional e t
 
 ---
 
+## 🌐 Testar a API no ar
+
+A API está publicada em **https://rocketlog-ez90.onrender.com**. Dá para testar sem instalar nada.
+
+> [!WARNING]
+> O servidor está no plano gratuito do Render e hiberna depois de um tempo sem uso. **A primeira requisição pode levar até 1 minuto**; as seguintes respondem normalmente.
+
+**Conta de vendedor para teste** (as rotas de entrega exigem o papel `seller`):
+
+| E-mail | Senha |
+|---|---|
+| `demo.seller@rocketlog.dev` | `rocketlog-demo` |
+
+Os dados deste ambiente são públicos e apenas de demonstração.
+
+**1. Criar um cliente** (use um e-mail seu; anote o `id` da resposta)
+```bash
+curl -X POST https://rocketlog-ez90.onrender.com/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Seu Nome", "email": "voce@exemplo.com", "password": "123456"}'
+```
+
+**2. Entrar como vendedor** (copie o `token` da resposta)
+```bash
+curl -X POST https://rocketlog-ez90.onrender.com/sessions \
+  -H "Content-Type: application/json" \
+  -d '{"email": "demo.seller@rocketlog.dev", "password": "rocketlog-demo"}'
+```
+
+**3. Criar uma entrega para o cliente**
+```bash
+curl -X POST https://rocketlog-ez90.onrender.com/deliveries \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"user_id": "ID_DO_CLIENTE", "description": "Teclado mecânico"}'
+```
+
+**4. Listar as entregas** (anote o `id` da entrega)
+```bash
+curl https://rocketlog-ez90.onrender.com/deliveries \
+  -H "Authorization: Bearer SEU_TOKEN"
+```
+
+**5. Atualizar o status**
+```bash
+curl -X PATCH https://rocketlog-ez90.onrender.com/deliveries/ID_DA_ENTREGA/status \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"status": "shiped"}'
+```
+
+**6. Ver o histórico da entrega**
+```bash
+curl https://rocketlog-ez90.onrender.com/deliveries-logs/ID_DA_ENTREGA/show \
+  -H "Authorization: Bearer SEU_TOKEN"
+```
+
+---
+
 ## 📋 Índice
 
+- [Testar a API no ar](#-testar-a-api-no-ar)
 - [Funcionalidades Principais](#-funcionalidades-principais)
 - [Stack Tecnológica](#%EF%B8%8F-stack-tecnol%C3%B3gica)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
@@ -57,7 +117,7 @@ O projeto faz uso de ferramentas modernas que garantem produtividade e performan
 - **Banco de Dados:** PostgreSQL (via Docker)
 - **Executores de Dev:** `tsx` (com auto-reload instantâneo)
 
-Para mais detalhes sobre as justificativas e versões de cada ferramenta, acesse o documento da [**Stack Tecnológica**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/stack.md).
+Para mais detalhes sobre as justificativas e versões de cada ferramenta, acesse o documento da [**Stack Tecnológica**](./docs/stack.md).
 
 ---
 
@@ -105,6 +165,7 @@ Na raiz do projeto, crie um arquivo `.env` baseado no exemplo abaixo:
 ```env
 PORT=3333
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/rocketlog?schema=public"
+JWT_SECRET="troque-por-um-segredo"
 ```
 
 > [!NOTE]
@@ -177,7 +238,7 @@ Por padrão, o Prisma Studio será disponibilizado em `http://localhost:5555`.
 
 Para aprofundar seu conhecimento na arquitetura e nas rotas da aplicação, consulte o repositório de documentação na pasta `/docs`:
 
-- [**Página Inicial da Documentação**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/README.md)
-- [**Lista de Ferramentas & Stack**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/stack.md)
-- [**Autenticação & Autorização (RBAC)**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/auth.md)
-- [**Guia de Rotas & Endpoints**](file:///c:/Users/Clara/Desktop/PROJETOS%20CLARA/Rocketlog/docs/routes.md)
+- [**Página Inicial da Documentação**](./docs/README.md)
+- [**Lista de Ferramentas & Stack**](./docs/stack.md)
+- [**Autenticação & Autorização (RBAC)**](./docs/auth.md)
+- [**Guia de Rotas & Endpoints**](./docs/routes.md)
