@@ -23,21 +23,21 @@ RUN npm ci
 
 COPY . .
 
+RUN npx prisma generate
 RUN npm run build
 
 # Production Runner Stage
-FROM node:20-alpine AS runner
-
-WORKDIR /app
+FROM base AS runner
 
 ENV NODE_ENV=production
 ENV PORT=3333
 
-COPY package*.json ./
 RUN npm ci --omit=dev
 
+COPY prisma ./prisma
 COPY --from=build /app/build ./build
+COPY --from=build /app/src/generated ./build/generated
 
 EXPOSE 3333
 
-CMD ["node", "build/server.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node build/server.js"]

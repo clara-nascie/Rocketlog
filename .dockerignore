@@ -5,3 +5,7 @@ npm-debug.log
 .gitignore
 Dockerfile
 .dockerignore
+.env
+build
+coverage
+src/generated
