@@ -111,7 +111,7 @@ Retorna uma lista de todas as entregas registradas no sistema.
 ---
 
 ### 🔄 Alterar Status de uma Entrega
-Atualiza o status de uma encomenda (ex: para `shiped` ou `delivered`). Esta alteração gera automaticamente um log correspondente de atualização no histórico.
+Atualiza o status de uma encomenda (ex: para `shipped` ou `delivered`). Esta alteração gera automaticamente um log correspondente de atualização no histórico.
 
 - **URL:** `/deliveries/:id/status`
 - **Método HTTP:** `PATCH`
@@ -119,7 +119,7 @@ Atualiza o status de uma encomenda (ex: para `shiped` ou `delivered`). Esta alte
 - **Corpo da Requisição (JSON):**
   ```json
   {
-    "status": "shiped"
+    "status": "shipped"
   }
   ```
 - **Resposta (200 OK):**
@@ -161,7 +161,7 @@ Retorna a entrega e todas as suas atualizações registradas na linha do tempo.
     "id": "0d6cff39-99cf-4a4c-9311-57a42e6ab8a3",
     "userId": "86ee5091-7149-4385-8996-16d9c6877aa0",
     "description": "Teclado mecânico gamer",
-    "status": "shiped",
+    "status": "shipped",
     "createdAt": "2026-06-18T19:15:33.201Z",
     "updatedAt": "2026-06-18T19:30:10.052Z",
     "logs": [
@@ -173,7 +173,7 @@ Retorna a entrega e todas as suas atualizações registradas na linha do tempo.
       },
       {
         "id": "e2b74d46-2934-5e51-ab4c-39f25bd74ec0",
-        "description": "Status atualizado para shiped",
+        "description": "Status atualizado para shipped",
         "createdAt": "2026-06-18T19:30:10.052Z",
         "updatedAt": "2026-06-18T19:30:10.052Z"
       }

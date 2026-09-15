@@ -17,7 +17,7 @@ enum UserRole {
 
 enum DeliveryStatus {
   processing
-  shiped
+  shipped
   delivered 
 }
 

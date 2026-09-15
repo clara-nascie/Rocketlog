@@ -62,7 +62,7 @@ curl https://rocketlog-ez90.onrender.com/deliveries \
 curl -X PATCH https://rocketlog-ez90.onrender.com/deliveries/ID_DA_ENTREGA/status \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer SEU_TOKEN" \
-  -d '{"status": "shiped"}'
+  -d '{"status": "shipped"}'
 ```
 
 **6. Ver o histórico da entrega**
@@ -98,7 +98,7 @@ curl https://rocketlog-ez90.onrender.com/deliveries-logs/ID_DA_ENTREGA/show \
   - **Admin (Administrador):** papel previsto no enum `UserRole`, porém **ainda não implementado** — nenhuma rota o utiliza no estado atual do projeto.
 - **Controle de Encomendas (Deliveries):**
   - Criação de entregas associadas a clientes específicos.
-  - Atualização dinâmica de estados da entrega (`processing` ➡️ `shiped` ➡️ `delivered`).
+  - Atualização dinâmica de estados da entrega (`processing` ➡️ `shipped` ➡️ `delivered`).
 - **Histórico de Logs (Delivery Logs):**
   - Registro cronológico de movimentação e status das encomendas, permitindo auditoria detalhada de cada etapa do envio.
 - **Tratamento Global de Erros:** Captura automática de falhas de validação, erros de lógica do app (`AppError`) e exceções inesperadas.

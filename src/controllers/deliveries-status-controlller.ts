@@ -13,7 +13,7 @@ class DeliveriesStatusController {
 
         //schema para validar o status que vem no corpo
         const bodySchema = z.object({
-            status: z.enum(["processing", "shiped", "delivered"])
+            status: z.enum(["processing", "shipped", "delivered"])
         })
 
         //validando e extraindo os dados
