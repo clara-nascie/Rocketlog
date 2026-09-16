@@ -1,0 +1,72 @@
+name: Testes
+
+# Roda a cada push e pull request na main. Os testes são de integração: batem
+# nas rotas via Supertest e gravam num Postgres de verdade, então o job sobe um
+# banco próprio, vazio, que é descartado no fim.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    # Mesma imagem do docker-compose.yml, para o CI testar contra o mesmo banco
+    # que roda na sua máquina.
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: rocketlog
+        ports:
+          - 5432:5432
+        # Sem isto o job segue antes de o banco aceitar conexão, e a migration
+        # falha de forma intermitente.
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    # O .env não vai para o repositório, então as variáveis que o src/env.ts
+    # exige são definidas aqui. O JWT_SECRET é descartável: só assina tokens
+    # dentro deste job e não protege nada em produção.
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/rocketlog?schema=public
+      JWT_SECRET: segredo-apenas-para-o-ci
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v5
+
+      # Node 20, o mesmo do Dockerfile.
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # `npm ci` em vez de `npm install`: instala exatamente o que está no
+      # package-lock.json, sem atualizar nada.
+      - name: Instalar dependências
+        run: npm ci
+
+      # src/generated/prisma está no .gitignore. Sem gerar o client, nem o tsc
+      # nem os testes encontram os tipos e as consultas do Prisma.
+      - name: Gerar o Prisma Client
+        run: npx prisma generate
+
+      # Pega erro de tipo em código que nenhum teste cobre.
+      - name: Verificar tipos
+        run: npx tsc --noEmit
+
+      # Cria as tabelas no banco vazio, na mesma ordem em que produção recebe.
+      - name: Aplicar migrations
+        run: npx prisma migrate deploy
+
+      - name: Rodar testes
+        run: npm run test:coverage
