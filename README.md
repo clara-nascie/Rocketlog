@@ -1,5 +1,6 @@
 # 🚀 Rocketlog
 
+[![Testes](https://github.com/clara-nascie/Rocketlog/actions/workflows/testes.yml/badge.svg)](https://github.com/clara-nascie/Rocketlog/actions/workflows/testes.yml)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.x-blue.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Express](https://img.shields.io/badge/Express-4.19-lightgrey?style=flat&logo=express)](https://expressjs.com/)
