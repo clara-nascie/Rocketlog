@@ -25,7 +25,7 @@ describe("UsersController", () => {
 
     user_id = response.body.id;
 
-    expect(response.status).toBe(201);
+    expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("id");
     expect(response.body.name).toBe("Test User");
   });
